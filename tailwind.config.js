@@ -7,12 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      gridTemplateColumns: {
+        "auto-fill-390": "repeat(auto-fill, minmax(50px, 390px))",
+        "auto-fit-390": "repeat(auto-fit, minmax(50px, 390px))",
+        "auto-fill-50": "repeat(auto-fill, minmax(50px, 1fr))",
+        "auto-fit-50": "repeat(auto-fit, minmax(50px, 1fr))",
       },
     },
   },
   plugins: [],
 };
+
+plugins: [require("daisyui")];
