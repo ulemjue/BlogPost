@@ -1,10 +1,11 @@
 import { useState } from "react";
 import useSWR from "swr";
-const url = "https://dev.to/api/articles";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Blogs = () => {
+const Blogs = (props) => {
+  const { per } = props;
+  const url = `https://dev.to/api/articles?per_page=${per}`;
   const [num, setNum] = useState(9);
   const { data, error, isLoading } = useSWR(url, fetcher);
 
@@ -21,6 +22,20 @@ const Blogs = () => {
 
   return (
     <div>
+      <div>
+        <div>
+          <p className=" font-bold text-base text-black mb-10">All Blog Post</p>
+        </div>
+        <div className="flex gap-5 text-gray-700 text-xs font-bold">
+          <button className="text-orange-300">All</button>
+          <button>Design</button>
+          <button>Travel</button>
+          <button>Fashion</button>
+          <button>Technology</button>
+          <button>Branding</button>
+          <button className="ml-auto">View All</button>
+        </div>
+      </div>
       <div className="grid grid-cols-auto-fit-390 gap-5">
         {data.slice(0, num).map((blog) => {
           return (
@@ -34,6 +49,7 @@ const Blogs = () => {
           );
         })}
       </div>
+
       <div className="flex justify-center">
         <button
           onClick={more}

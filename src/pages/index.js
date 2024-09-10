@@ -1,24 +1,13 @@
-import Header from "../components/Header";
-import Content from "@/components/Content";
+import Hero from "@/components/Hero";
 import Trending from "@/components/Trending";
-import Blogs from "../components/Blogs";
-// import Daisy from "@/components/daisy";
-// import moment from "moment";
+import Blogs from "@/components/Blogs";
+
 export default function Home() {
   return (
-    <div className="max-w-[1920px] mx-auto bg-white">
-      <div className="px-[350px] py-8">
-        <Header />
-      </div>
-      <div className="px-[350px] py-8">
-        <Content />
-      </div>
-      <div>
-        <Trending />
-      </div>
-      <div className="px-[350px] py-8  ">
-        <Blogs />
-      </div>
+    <div className="p-5 grid gap-[100px]">
+      <Hero />
+      <Trending />
+      <Blogs per="30" />
     </div>
   );
 }

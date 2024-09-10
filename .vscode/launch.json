@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "div",
+      "request": "launch",
+      "url": "div"
+    }
+  ]
+}

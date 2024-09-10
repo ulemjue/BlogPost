@@ -5,7 +5,7 @@ const url = "https://dev.to/api/articles";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Content = () => {
+export default function Hero() {
   const [num, setNum] = useState(0);
   const { data, error, isLoading } = useSWR(url, fetcher);
 
@@ -31,7 +31,7 @@ const Content = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-auto-fit-390 gap-5">
+      <div className="w-[100%]">
         {data.slice(num, num + 1).map((blog) => {
           return (
             <Card
@@ -44,6 +44,7 @@ const Content = () => {
           );
         })}
       </div>
+
       <div className="flex justify-end gap-3">
         <button onClick={Minus}>
           <img src="back.png"></img>
@@ -54,22 +55,21 @@ const Content = () => {
       </div>
     </div>
   );
-};
-export default Content;
+}
 
 const Card = (props) => {
   const { image, title, date, tags } = props;
   return (
     <div
+      className="h-[600px] flex items-end relative w-[100%] p-4 rounded"
       style={{
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="w-[1216px] h-[600px] p-4 border border-solid rounded"
     >
-      <div className="bg-white w-[598px] h-[252px] rounded-xl ">
-        <div className="flex gap-2 mt-[300px]">
+      <div className="bg-white h-fit p-10 absolute rounded-xl  ">
+        <div className="flex gap-2 ">
           {tags.slice(0, 1).map((tag) => {
             return (
               <button className="text-blue-500 bg-blue-200 py-2 px-4 rounded-xl  text-[9px] mt-10 ">
