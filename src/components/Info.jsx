@@ -56,11 +56,4 @@ export default function Info() {
     </div>
   );
 }
-
-/* <div className="bg-gray-200  flex ">
-        <input
-          className="bg-gray-200 rounded-xl w-[114px] h-[20px]"
-          placeholder="Search"
-        ></input>
-        <img src="search-outline-1.png" />
-      </div> */
+ç;
