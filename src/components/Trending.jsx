@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function Trending(props) {
-  const { per } = props;
-  const url = `https://dev.to/api/articles?per_page=${per}`;
+const Trending = () => {
+  const url = `https://dev.to/api/articles`;
   const [num, setNum] = useState(4);
   const { data, error, isLoading } = useSWR(url, fetcher);
 
@@ -17,51 +17,49 @@ export default function Trending(props) {
     return <p>...oh sorry error</p>;
   }
 
+  const slicedBlogs = data.slice(0, num);
+  console.log(slicedBlogs);
+
   return (
-    <div className="bg-red-300">
-      <div>
-        <p className="text-black font-bold">Trending</p>
-      </div>
-      <div className="grid grid-cols-auto-fit-390 gap-5">
-        {data.slice(0, num).map((blog) => {
-          return (
+    <div className="grid grid-cols-4 gap-5">
+      {slicedBlogs.map((blog) => {
+        return (
+          <Link key={blog.id} href={`/blog/${blog.id}`}>
             <TrendCard
-              key={blog.id}
               image={blog.cover_image}
               title={blog.title}
-              date={blog.published_at}
               tags={blog.tag_list}
             />
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-const TrendCard = (props) => {
-  const { image, title, date, tags } = props;
-  return (
-    <div className="w-fit p-4 border border-solid rounded">
-      <div
-        className="w-[360px] h-[240px] rounded-sm "
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></div>
-      <div className="flex gap-2">
-        {tags.map((tag) => {
-          return (
-            <button className="text-blue-500 bg-blue-200 py-2 px-4 rounded-xl  text-[9px] mt-3 ">
-              {tag}
-            </button>
-          );
-        })}
-      </div>
-      <h2 className="text-black font-bold text-base mt-2">{title}</h2>
-      <p className=" font-normal  text-xs text-gray-300 mt-2">{date}</p>
+          </Link>
+        );
+      })}
     </div>
   );
 };
+
+const TrendCard = (props) => {
+  const { image, title, tags } = props;
+  const tag = tags[0];
+  return (
+    <div
+      className="w-[290px] h-[320px] rounded-xl "
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="h-full bg-[rgba(0,0,0,0.2)] flex flex-col  justify-end rounded-xl font-bold text-base ">
+        <div>
+          {" "}
+          <button className="bg-blue-500 rounded-xl p-1 mb-5 ml-5">
+            {tag}
+          </button>
+        </div>
+        <h1 className="mb-10 ml-5 text-white">{title}</h1>
+      </div>
+    </div>
+  );
+};
+
+export default Trending;

@@ -36,7 +36,7 @@ const Blogs = (props) => {
           <button className="ml-auto">View All</button>
         </div>
       </div>
-      <div className="grid grid-cols-auto-fit-390 gap-5">
+      <div className="grid grid-cols-3 gap-5">
         {data.slice(0, num).map((blog) => {
           return (
             <BlogCard
@@ -67,7 +67,7 @@ const BlogCard = (props) => {
   return (
     <div className="w-fit p-4 border border-solid rounded">
       <div
-        className="w-[360px] h-[240px] rounded-sm "
+        className="w-[360px] h-[240px] rounded-sm  "
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",

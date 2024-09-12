@@ -11,7 +11,6 @@ export default function Info() {
           enim ad minim veniam
         </p>
       </div>
-
       <div className=" grid  grid-cols-2 gap-5 mt-10 mb-10">
         <div className=" bg-gray-100 p-5 rounded-xl">
           <p className="text-black text-3xl font-bold ">Address</p>
@@ -26,7 +25,6 @@ export default function Info() {
           </p>
         </div>
       </div>
-
       <div className="bg-gray-200 rounded-xl">
         <div>
           <p className="text-black font-bold text-xl  p-5">Leave a Message</p>
@@ -56,4 +54,3 @@ export default function Info() {
     </div>
   );
 }
-ç;
